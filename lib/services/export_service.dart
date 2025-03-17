@@ -23,7 +23,7 @@ class ExportService {
       final Email email = Email(
         body: 'Adjunto encontrarás el archivo JSON con los contactos exportados.',
         subject: 'Exportación de Contactos',
-        recipients: [],  // Puede dejarse vacío para que el usuario elija el destinatario
+        recipients: ["h.flores@danich.com"],  // Puede dejarse vacío para que el usuario elija el destinatario
         attachmentPaths: [filePath],
         isHTML: false,
       );

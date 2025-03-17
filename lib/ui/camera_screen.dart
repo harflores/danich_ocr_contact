@@ -6,14 +6,16 @@ import '../models/contact.dart';
 import '../providers/contact_provider.dart';
 import 'package:provider/provider.dart';
 
+import '../utils/constants.dart';
+
 class CameraScreen extends StatefulWidget {
   const CameraScreen({super.key});
 
   @override
-  _CameraScreenState createState() => _CameraScreenState();
+  CameraScreenState createState() => CameraScreenState();
 }
 
-class _CameraScreenState extends State<CameraScreen> {
+class CameraScreenState extends State<CameraScreen> {
   CameraController? _cameraController;
   Future<void>? _initializeControllerFuture;
   late List<CameraDescription> _cameras;
@@ -74,9 +76,9 @@ class _CameraScreenState extends State<CameraScreen> {
       Contact? newContact = await apiService.procesarTexto(textoReconocido);
       
       if (newContact != null) {
-        Provider.of<ContactProvider>(context, listen: false).addContact(newContact);
+        Provider.of<ContactProvider>(context,listen: false).addContact(newContact);
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Contacto agregado: ${newContact.nombre}'))
+          SnackBar(content: Text('Contacto agregado: ${newContact.textCapture}'))
         );
         Navigator.pop(context);
       } else {
@@ -108,9 +110,10 @@ class _CameraScreenState extends State<CameraScreen> {
               },
             ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Constants().secondaryColor,
         onPressed: _captureAndProcessImage,
         tooltip: 'Tomar foto',
-        child: Icon(Icons.camera_alt),
+        child: Icon(Icons.camera_alt, color: Constants().primaryColor,),
       ),
     );
   }

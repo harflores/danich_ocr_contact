@@ -1,5 +1,5 @@
 name: danich_ocr_contact
-description: "A new Flutter project."
+description: "Capturador de contactos con OCR"
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -37,6 +37,9 @@ dependencies:
   path_provider: ^2.1.5
   flutter_email_sender: ^7.0.0
   google_mlkit_text_recognition: ^0.14.0
+  icons_launcher: ^3.0.0
+  flutter_native_splash: ^2.4.3
+
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -57,6 +60,16 @@ dev_dependencies:
 # following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter packages.
+icons_launcher:
+  image_path: "assets/icon/icon.png"
+  platforms:
+    android:
+      enable: true
+    ios:
+      enable: true
+    web:
+      enable: true
+
 flutter:
 
   # The following line ensures that the Material Icons font is
@@ -65,8 +78,8 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
+  assets:
+    - assets/icon/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

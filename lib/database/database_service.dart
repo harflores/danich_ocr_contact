@@ -6,18 +6,12 @@ class DatabaseService {
   static Database? _db;
 
   // Nombre de la base de datos y tabla
-  static const String DB_NAME = 'contacts_db.db';
-  static const String TABLE_CONTACTS = 'contacts';
+  static const String dbName = 'contacts_db.db';
+  static const String tableContacts = 'contacts';
 
   // Columnas de la tabla de contactos
-  static const String COL_ID = 'id';
-  static const String COL_NOMBRE = 'nombre';
-  static const String COL_EMPRESA = 'empresa';
-  static const String COL_CARGO = 'cargo';
-  static const String COL_CORREO = 'correo';
-  static const String COL_TELEFONO = 'telefono';
-  static const String COL_DIRECCION = 'direccion';
-  static const String COL_TEXTORECONOCIDO = 'textoReconocido';
+  static const String colId = 'id';
+  static const String colTextCapture = 'textCapture';
 
   /// Obtener instancia de la base de datos (inicializar si es necesario)
   static Future<Database> _getDatabase() async {
@@ -26,22 +20,16 @@ class DatabaseService {
     }
     // Obtener ruta del directorio de bases de datos en el dispositivo
     final dbPath = await getDatabasesPath();
-    final path = join(dbPath, DB_NAME);
+    final path = join(dbPath, dbName);
     // Abrir la base de datos, creando la tabla si aún no existe
     _db = await openDatabase(
       path,
       version: 1,
       onCreate: (Database db, int version) async {
         await db.execute('''
-          CREATE TABLE $TABLE_CONTACTS (
-            $COL_ID INTEGER PRIMARY KEY AUTOINCREMENT,
-            $COL_NOMBRE TEXT,
-            $COL_EMPRESA TEXT,
-            $COL_CARGO TEXT,
-            $COL_CORREO TEXT,
-            $COL_TELEFONO TEXT,
-            $COL_DIRECCION TEXT,
-            $COL_TEXTORECONOCIDO TEXT
+          CREATE TABLE $tableContacts (
+            $colId INTEGER PRIMARY KEY AUTOINCREMENT,
+            $colTextCapture TEXT
           )
         ''');
       },
@@ -53,14 +41,14 @@ class DatabaseService {
   static Future<int> insertContact(Contact contact) async {
     final db = await _getDatabase();
     // Convertir Contact a mapa y realizar la inserción
-    int id = await db.insert(TABLE_CONTACTS, contact.toMap());
+    int id = await db.insert(tableContacts, contact.toMap());
     return id;
   }
 
   /// Obtener todos los contactos desde la base de datos
   static Future<List<Contact>> getAllContacts() async {
     final db = await _getDatabase();
-    final List<Map<String, dynamic>> results = await db.query(TABLE_CONTACTS);
+    final List<Map<String, dynamic>> results = await db.query(tableContacts);
     // Convertir cada map a Contact
     List<Contact> contacts = results.map((map) => Contact.fromMap(map)).toList();
     return contacts;
@@ -71,9 +59,9 @@ class DatabaseService {
     final db = await _getDatabase();
     if (contact.id == null) return 0;
     return await db.update(
-      TABLE_CONTACTS, 
+      tableContacts, 
       contact.toMap(),
-      where: '$COL_ID = ?', 
+      where: '$colId = ?', 
       whereArgs: [contact.id],
     );
   }
@@ -82,8 +70,8 @@ class DatabaseService {
   static Future<int> deleteContact(int id) async {
     final db = await _getDatabase();
     return await db.delete(
-      TABLE_CONTACTS,
-      where: '$COL_ID = ?', 
+      tableContacts,
+      where: '$colId = ?', 
       whereArgs: [id],
     );
   }
