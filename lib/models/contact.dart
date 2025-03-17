@@ -7,6 +7,7 @@ class Contact {
   String correo;
   String telefono;
   String direccion;
+  String textoReconocido;
 
   Contact({
     this.id,
@@ -16,6 +17,7 @@ class Contact {
     required this.correo,
     required this.telefono,
     required this.direccion,
+    required this.textoReconocido
   });
 
   /// Constructor para crear Contact desde un Map (por ejemplo, de la base de datos)
@@ -28,6 +30,7 @@ class Contact {
       correo: map['correo'] ?? '',
       telefono: map['telefono'] ?? '',
       direccion: map['direccion'] ?? '',
+      textoReconocido: map['TextoReconocido'] ?? '',
     );
   }
 
@@ -41,6 +44,7 @@ class Contact {
       'correo': correo,
       'telefono': telefono,
       'direccion': direccion,
+      'textoReconocido': textoReconocido
     };
   }
 }

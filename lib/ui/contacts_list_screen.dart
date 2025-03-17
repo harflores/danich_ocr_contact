@@ -39,7 +39,8 @@ class ContactsListScreen extends StatelessWidget {
             itemBuilder: (context, index) {
               Contact contact = contacts[index];
               return ListTile(
-                title: Text(contact.nombre),
+                // title: Text('${contact.textoReconocido.substring(0, 20)}...'),
+                title: Text('${contact.textoReconocido}'),
                 subtitle: Text(contact.empresa),
                 onTap: () {
                   // Ver/editar contacto existente: navegar a ContactFormScreen en modo edición

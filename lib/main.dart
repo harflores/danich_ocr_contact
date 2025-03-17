@@ -9,6 +9,8 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -18,7 +20,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Contact Scanner',
         theme: ThemeData(
-          primarySwatch: Colors.blue,
+          primarySwatch: Colors.teal,
         ),
         home: ContactsListScreen(),
       ),

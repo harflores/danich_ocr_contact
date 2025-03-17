@@ -1,3 +1,4 @@
 {
-    "cmake.sourceDirectory": "C:/DANICH/danich_ocr_contact/linux"
+    "cmake.sourceDirectory": "C:/DANICH/danich_ocr_contact/linux",
+    "java.configuration.updateBuildConfiguration": "interactive"
 }

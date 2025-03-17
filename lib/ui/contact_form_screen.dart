@@ -22,6 +22,7 @@ class _ContactFormScreenState extends State<ContactFormScreen> {
   late TextEditingController _correoController;
   late TextEditingController _telefonoController;
   late TextEditingController _direccionController;
+  late TextEditingController _textoReconocidoController;
 
   @override
   void initState() {
@@ -33,6 +34,7 @@ class _ContactFormScreenState extends State<ContactFormScreen> {
     _correoController = TextEditingController(text: widget.contact?.correo ?? '');
     _telefonoController = TextEditingController(text: widget.contact?.telefono ?? '');
     _direccionController = TextEditingController(text: widget.contact?.direccion ?? '');
+    _textoReconocidoController = TextEditingController(text: widget.contact?.textoReconocido ?? '');
   }
 
   @override
@@ -44,6 +46,7 @@ class _ContactFormScreenState extends State<ContactFormScreen> {
     _correoController.dispose();
     _telefonoController.dispose();
     _direccionController.dispose();
+    _textoReconocidoController.dispose();
     super.dispose();
   }
 
@@ -61,6 +64,11 @@ class _ContactFormScreenState extends State<ContactFormScreen> {
           child: SingleChildScrollView(
             child: Column(
               children: [
+                TextFormField(
+                  controller: _textoReconocidoController,
+                  decoration: InputDecoration(labelText: 'Texto Reconocido'),
+                  maxLines: 10,
+                ),
                 TextFormField(
                   controller: _nombreController,
                   decoration: InputDecoration(labelText: 'Nombre'),
@@ -102,6 +110,7 @@ class _ContactFormScreenState extends State<ContactFormScreen> {
                         correo: _correoController.text,
                         telefono: _telefonoController.text,
                         direccion: _direccionController.text,
+                        textoReconocido: _textoReconocidoController.text,
                       );
                       // Usar provider para guardar en BD y actualizar estado
                       final provider = Provider.of<ContactProvider>(context, listen: false);

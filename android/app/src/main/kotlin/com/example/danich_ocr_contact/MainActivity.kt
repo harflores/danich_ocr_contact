@@ -1,4 +1,4 @@
-package com.example.danich_ocr_contact
+package com.danich.danich_ocr_contact
 
 import io.flutter.embedding.android.FlutterActivity
 

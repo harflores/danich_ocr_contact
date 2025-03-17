@@ -17,6 +17,7 @@ class DatabaseService {
   static const String COL_CORREO = 'correo';
   static const String COL_TELEFONO = 'telefono';
   static const String COL_DIRECCION = 'direccion';
+  static const String COL_TEXTORECONOCIDO = 'textoReconocido';
 
   /// Obtener instancia de la base de datos (inicializar si es necesario)
   static Future<Database> _getDatabase() async {
@@ -39,7 +40,8 @@ class DatabaseService {
             $COL_CARGO TEXT,
             $COL_CORREO TEXT,
             $COL_TELEFONO TEXT,
-            $COL_DIRECCION TEXT
+            $COL_DIRECCION TEXT,
+            $COL_TEXTORECONOCIDO TEXT
           )
         ''');
       },
