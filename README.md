@@ -48,6 +48,4 @@ Las contribuciones son bienvenidas. Por favor, abre un issue o un pull request p
 
 Este proyecto está bajo la Licencia MIT. Consulta el archivo `LICENSE` para más detalles.
 
-## Contacto
 
-Para cualquier consulta, puedes contactarme en [tu_email@ejemplo.com](mailto:tu_email@ejemplo.com).
